@@ -1,5 +1,5 @@
 <h1>This is your ROI page</h1>
-<%= form_for @roi do |f| %>
+<%= form_for @roi, {url: '/rois/new', html:{method:'get'}} do |f| %>
  	<p>
  		<%= f.label "Money Spent" %>
  		<%= f.text_field :spent %>
@@ -31,3 +31,7 @@
  	</p>
 <%= f.submit "Calc" %>
 <%end %>
+
+	<% if @renderpartial %>
+	<%=  render "/partials/roiresults" %>
+	<% end %>

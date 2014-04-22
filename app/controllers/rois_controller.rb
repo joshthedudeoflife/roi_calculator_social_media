@@ -7,6 +7,21 @@ class RoisController < ApplicationController
   end
   def new
   	@roi = Roi.new
+    #use logic here
+    
+    if params[:roi] == nil
+      @roi = Roi.new
+    else
+    @roi = Roi.new
+    @roi.spent = params[:roi][:spent]
+    @roi.retailers = params[:roi][:retailers]
+    @roi.purchase_volume = params[:roi][:purchase_volume]
+    @roi.contribution_margin = params[:roi][:contribution_margin]
+    @roi.sales_increase = params[:roi][:sales_increase]
+    @roi.leads = params[:roi][:leads]
+    @roi.leads_value = params[:roi][:leads_value]
+    @renderpartial = true
+    end
   end
   def show
   	@roi = Roi.new
@@ -20,11 +35,6 @@ class RoisController < ApplicationController
   	@roi.sales_increase = params[:roi][:sales_increase]
   	@roi.leads = params[:roi][:leads]
   	@roi.leads_value = params[:roi][:leads_value]
-  	@roi = @roi.spent 
-  	if @roi.save
-  			puts "Your ROI is #{roi}"
-  		else
-  			render :new
-  		end
+    
   end
 end
